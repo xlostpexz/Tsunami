@@ -1,3 +1,18 @@
+ local Old = game:GetService("RbxAnalyticsService"):GetClientId()
+ 
+ if game:GetService("RbxAnalyticsService"):GetClientId() ~= Old then
+     while true do end
+ end
+ if HWID[table.find(HWID, Old)] == Old then
+ print("Whitelist")
+ --scripthub
+ else
+     setclipboard("HWID : "..tostring(Old))
+     game.Players.LocalPlayer:Kick("Wrong Hwid Dm Admin!")
+     wait(.5)
+     game:Shutdown()
+ end
+
 local keys = {
     "ASD-GG-WP",
     "DOUBLE-HEE",
@@ -71,108 +86,28 @@ end
 end
 end
 
- local Old = game:GetService("RbxAnalyticsService"):GetClientId()
- 
- if game:GetService("RbxAnalyticsService"):GetClientId() ~= Old then
-     while true do end
- end
- if HWID[table.find(HWID, Old)] == Old then
- print("Whitelist")
- --scripthub
- else
-     setclipboard("HWID : "..tostring(Old))
-     game.Players.LocalPlayer:Kick("Wrong Hwid Dm Admin!")
-     wait(.5)
-     game:Shutdown()
- end
 
---Heres Source Lol 
-local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
-local MainUI = UILibrary.Load("Tsunami Game : Winnable! Hub")
-local Player = MainUI.AddPage("Player",false)
-local AutoFarm = MainUI.AddPage("AutoFarm",false)
-local Teleport = MainUI.AddPage("Teleport",false)
-getgenv().Farm = false
-getgenv().W = 16
-getgenv().J = 50
-getgenv().PickUp = false
-getgenv().ShouldRagdoll = false
---Annouce Shit
-game.StarterGui:SetCore("SendNotification",{
-    Title = "Credits",
-    Text = "Script Made By xlostpex",
-    Duration = 999 ,
-    Button1 = "Nice"
-})
 
---Auto Functions
+local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/fluxlib.txt")()
 
-local cor = coroutine.create(function ()
-    while true do
-        wait(0.2)
-        pcall(function ()
-            game.Players.LocalPlayer.Character:FindFirstChildOfClass("ForceField"):Destroy()
-        end)
-    end
-end)
---coroutine.resume(cor)
---WalkSpeed FUnction
-Player.AddSlider("WalkSpeed", {Min = 16, Max = 300, Def = 16},function(v)
-    game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = v
-    wait(0.1)
+local win = Flux:Window("Tsunami Game", "Winnable! Hub", Color3.fromRGB(255, 110, 48), Enum.KeyCode.LeftControl)
+local tab = win:Tab("Auto Farm", "http://www.roblox.com/asset/?id=6023426915")
+tab:Button("Finish (On)", "IDK", function()
+_G.Cash = true
+if _G.Cash then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8.06873798, 231.224792, 982.323914, 0.999523818, 1.80634296e-09, -0.0308560338, -1.79704662e-09, 1, 3.29012984e-10, 0.0308560338, -2.73406575e-10, 0.999523818)
+local CFrameEnd = CFrame.new(-7.70522976, 51.3827858, -1019.78278, 0.835536003, 0.00016171328, 0.549435675, -2.53222697e-05, 0.99999994, -0.00025581813, -0.549435675, 0.000199832313, 0.835536003) --ใส่CFrame
+local Time = 20 --ใส่เวลาที่จะไปถึง
+local tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd}) tween:Play()
+end
 end)
 
---JumpPower Function
-Player.AddSlider("JumpPower", {Min = 50, Max = 250, Def = 50},function(v)
-    game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").JumpPower = v
-    wait(0.1)
-end)
---Anti Ragdoll
-Player.AddToggle("Anti Ragdoll",false,function(v)
-    getgenv().ShouldRagdoll = v
-    local ragdoll = game.Players.LocalPlayer.Character:FindFirstChild("RagdollToggled")
-    repeat
-        wait(0.2)
-        if ragdoll then
-            ragdoll:FireServer(false)
-        end
-    until 
-    getgenv().ShouldRagdoll == false
-end)
---Get Some Badges
-Player.AddButton("Get Some Badges",function ()
-    
-end)
-
---AutoFarm Function
-AutoFarm.AddToggle("AutoFarm",false,function (v)
-    getgenv().Farm = v
-    repeat
-        if getgenv().Farm == true then
-local tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"),TweenInfo.new(7),{CFrame =CFrame.new(-9.4971323, 39.9823875, -1051.51807, 0.985789657, -0.00746125402, -0.16781877, -0.00396866864, 0.997699857, -0.0676704049, 0.167937666, 0.0673748031, 0.983492553)})
-tween:Play()
-tween.Completed:Wait()
-wait(1)
-game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(0.88348788, 230.699554, 982.310242, -0.999389589, -0.000123913429, 0.0349354483, -0.000140547054, 0.999999881, -0.000473669439, -0.034935385, -0.000478290371, -0.99938947)
-game.StarterGui:SetCore("SendNotification",{
-    Title = "Waiting..",
-    Text = "Waiting Couple Of Seconds..",
-    Duration = 3,
-})
-wait(26)
-        end
-    until 
-    getgenv().Farm == false
-end)
---AutoPickup Function
-AutoFarm.AddToggle("Auto PickUp Coins",false,function (v)
-    getgenv().PickUp = v
-    repeat
-        wait(0.1)
-        pcall(function ()
-            firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"),game:GetService("Workspace").CurrentPointCoins.CoinFolder.CoinCollision,0)
-
-        end)
-    until 
-    getgenv().PickUp == false
+tab:Button("Finish (Off)", "IDK", function()
+_G.Cash = false
+if _G.Cash then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8.06873798, 231.224792, 982.323914, 0.999523818, 1.80634296e-09, -0.0308560338, -1.79704662e-09, 1, 3.29012984e-10, 0.0308560338, -2.73406575e-10, 0.999523818)
+local CFrameEnd = CFrame.new(-7.70522976, 51.3827858, -1019.78278, 0.835536003, 0.00016171328, 0.549435675, -2.53222697e-05, 0.99999994, -0.00025581813, -0.549435675, 0.000199832313, 0.835536003) --ใส่CFrame
+local Time = 20 --ใส่เวลาที่จะไปถึง
+local tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd}) tween:Play()
+end
 end)
